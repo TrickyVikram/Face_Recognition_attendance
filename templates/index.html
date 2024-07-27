@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Face Recognition Attendance</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Mark Attendance</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Face Recognition Attendance</h1>
-        <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="image" accept="image/*" required>
-            <button type="submit">Upload and Recognize Faces</button>
+        <h1 class="mt-5">Mark Attendance</h1>
+        <form method="POST" enctype="multipart/form-data" class="mt-4">
+            <div class="form-group">
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        <a href="{{ url_for('register') }}">Register a new face</a>
         {% if uploaded_image %}
-        <h2>Uploaded Image:</h2>
-        <img src="{{ url_for('static', filename=uploaded_image) }}" alt="Uploaded Image">
-        <h2>Recognized Faces:</h2>
+        <h3 class="mt-5">Uploaded Image</h3>
+        <img src="{{ url_for('static', filename=uploaded_image) }}" class="img-fluid" alt="Uploaded Image">
+        <h4 class="mt-4">Detected Faces:</h4>
         <ul>
             {% for name in face_names %}
             <li>{{ name }}</li>
@@ -25,5 +27,8 @@
         </ul>
         {% endif %}
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

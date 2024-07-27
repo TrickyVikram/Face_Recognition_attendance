@@ -1,0 +1,6 @@
+from flask import Flask, render_template, request, redirect, url_for
+import face_recognition
+import cv2
+import numpy as np
+import pandas as pd
+import os
