@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Face Recognition Attendance</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Upload and Recognize Faces</button>
+        </form>
+        <a href="{{ url_for('register') }}">Register a new face</a>
+        {% if uploaded_image %}
+        <h2>Uploaded Image:</h2>
+        <img src="{{ url_for('static', filename=uploaded_image) }}" alt="Uploaded Image">
+        <h2>Recognized Faces:</h2>
+        <ul>
+            {% for name in face_names %}
+            <li>{{ name }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
